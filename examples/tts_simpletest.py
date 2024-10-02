@@ -9,4 +9,3 @@ if greet() == '':
     print('Valid')
 else:
     print('Invalid')
-
