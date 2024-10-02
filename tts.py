@@ -35,3 +35,8 @@ Implementation Notes
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/mr-sagar-shelar/CircuitPython_tts.git"
+
+
+def greet():
+    print('Hello from TTS!')
+    return 'Hello from TTS!'
