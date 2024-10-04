@@ -28,7 +28,7 @@ RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext 
 #     make 124
 
 # Clone Circuit Python Repo and fetch submodules
-RUN echo "\n\n\n\n\n\n\n\n ************************************** Clone Circuit Python Repo **************************************" && \
+RUN echo "\n\n\n ************************************** Clone Circuit Python Repo **************************************" && \
     cd &&\
     python3 -mvenv myEnv &&\
     echo $(ls) &&\
@@ -44,7 +44,7 @@ RUN echo "\n\n\n\n\n\n\n\n ************************************** Clone Circuit 
     make fetch-port-submodules
 
 # Make mpy-cross
-RUN echo "\n\n\n\n\n\n\n\n ************************************** Setting mpy-cross **************************************" && \
+RUN echo "\n\n\n ************************************** Setting mpy-cross **************************************" && \
     cd &&\
     python3 -mvenv myEnv &&\
     echo $(ls) &&\
@@ -52,7 +52,7 @@ RUN echo "\n\n\n\n\n\n\n\n ************************************** Setting mpy-cr
     cd circuitpython &&\
     echo $(pwd) && \
     echo $(ls) && \
-    echo "\n\n\n\n\n\n\n\n ************************************** make -C mpy-cross **************************************" && \
+    echo "\n\n\n ************************************** make -C mpy-cross **************************************" && \
     make -C mpy-cross
 
 # Download aarch64-none-elf-gcc
@@ -77,7 +77,7 @@ RUN echo "\n\n ************************************** Downloading aarch64-none-e
     # wget -nv https://gist.githubusercontent.com/ramsey/11072524/raw/62dace10c306381445a0110538097d5c02227f2d/hello1.c && \
     echo "\n\n ************************************** Contents of Bin **************************************" && \
     echo $(pwd) && \
-    echo $(ls) && \
+    echo $(ls -l)
 
 
 # # Compile sample C program
@@ -97,12 +97,12 @@ RUN echo "\n\n ************************************** Downloading aarch64-none-e
 
 
 # Make raspberry pi zero board
-RUN echo "\n\n\n\n\n\n\n\n ************************************** Setting Python Env **************************************" && \
+RUN echo "\n\n\n ************************************** Setting Python Env **************************************" && \
     cd &&\
     python3 -mvenv myEnv &&\
     . myEnv/bin/activate &&\
     cd circuitpython/ports/broadcom &&\
-    echo "\n\n\n\n\n\n\n\n ************************************** Making RPI Board **************************************" && \
+    echo "\n\n\n ************************************** Making RPI Board **************************************" && \
     PATH=/root/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/bin:$PATH && \
     echo $PATH && \
     echo $(pwd) && \
