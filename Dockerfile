@@ -12,7 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update
 #-y is for accepting yes when the system asked us for installing the package
 # RUN apt-get install -y build-essential cmake git openssh-server gdb pkg-config valgrind systemd-coredump
-RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext mtools python3-full python3-pip python3-venv curl python-dev gcc
+RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext mtools python3-full python3-pip python3-venv curl gcc
 
 # Clone Circuit Python Repo and fetch submodules
 RUN cd &&\
@@ -50,7 +50,11 @@ RUN cd &&\
     . myEnv/bin/activate &&\
     cd circuitpython/ports/broadcom &&\
     echo "\n\n\n\n\n\n\n\n ************************************** Making RPI Board **************************************" && \
-    echo $(pwd) && \
-    which gcc-aarch64-linux-gnu-gcc && \
-    echo $(ls -l) && \
+    # echo $(pwd) && \
+    # which gcc-aarch64-none-elf-gcc && \
+    # echo $(ls -l) && \
     make BOARD=raspberrypi_zero2w
+
+# FileNotFoundError: [Errno 2] No such file or directory: 'aarch64-none-elf-gcc'
+
+# docker build --progress=plain -t tts_circuitpython .
