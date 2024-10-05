@@ -8,7 +8,7 @@ ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update
-RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext mtools python3-full python3-pip python3-venv curl gcc wget xz-utils file
+RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext mtools python3-full python3-pip python3-venv curl gcc wget xz-utils file parted udev
 # RUN apt-get install -y wget xz-utils file
 # RUN apt-get install -y wget gcc gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu make file
 
@@ -70,13 +70,13 @@ RUN echo "\n\n ************************************** Downloading aarch64-none-e
     cd arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf && \
     # echo $(pwd) && \
     echo $(ls) && \
-    PATH=/root/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/bin:$PATH && \
+    export PATH=/root/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/bin:$PATH && \
     echo "\n\n ************************************** Updated PATH **************************************" && \
     echo $PATH && \
     cd bin && \
     # wget -nv https://gist.githubusercontent.com/ramsey/11072524/raw/62dace10c306381445a0110538097d5c02227f2d/hello1.c && \
     echo "\n\n ************************************** Contents of Bin **************************************" && \
-    echo $(pwd) && \
+    echo $(pwd)
     # echo $(ls -l)
 
 
@@ -96,6 +96,22 @@ RUN echo "\n\n ************************************** Downloading aarch64-none-e
 #     file hello12444
 
 
+# Download dosfstools
+RUN echo "\n\n\n ************************************** Download dosfstools **************************************" && \
+    cd &&\
+    wget -nv https://github.com/dosfstools/dosfstools/releases/download/v4.2/dosfstools-4.2.tar.gz && \
+    tar -xf dosfstools-4.2.tar.gz && \
+    cd dosfstools-4.2 && \
+    ./configure && \
+    echo "\n\n\n ************************************** Making DOSFSTools **************************************" && \
+    make && \
+    echo "\n\n\n ************************************** Contents of DOSFSTools **************************************" && \
+    echo $(pwd) && \
+    echo "\n\n\n ************************************** Installing DOSFSTools **************************************" && \
+    make install && \
+    echo $(ls)
+
+
 # Make raspberry pi zero board
 RUN echo "\n\n\n ************************************** Setting Python Env **************************************" && \
     cd &&\
@@ -103,10 +119,10 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
     . myEnv/bin/activate &&\
     cd circuitpython/ports/broadcom &&\
     echo "\n\n\n ************************************** Making RPI Board **************************************" && \
-    PATH=/root/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/bin:$PATH && \
+    export PATH=/root/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/bin:$PATH && \
     echo $PATH && \
-    echo $(pwd) && \
-    echo $(ls -l) && \
+    # echo $(pwd) && \
+    # echo $(ls -l) && \
     make BOARD=raspberrypi_zero2w && \
     echo $(pwd) && \
     echo $(ls -l)
@@ -122,3 +138,15 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
 # Direct URL: https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-gnu-toolchain-13.3.rel1-darwin-arm64-aarch64-none-elf.tar.xz
 # Once downloaded execute: tar -xf arm-gnu-toolchain-13.3.rel1-darwin-arm64-aarch64-none-elf.tar.xz 
 # Add global path variable: "sudo nano /etc/paths" and add the path
+
+
+# 399.0         READONLY:      963777 B      1536 KB     61.28%
+# 399.0              RAM:       31496 B      1022 MB      0.00%
+# 399.1 aarch64-none-elf-objcopy -O binary build-raspberrypi_zero2w/kernel8.elf build-raspberrypi_zero2w/kernel8.img
+# 399.1 cp build-raspberrypi_zero2w/kernel8.img build-raspberrypi_zero2w/firmware.kernel8.img
+# 399.1 0+0 records in
+# 399.1 0+0 records out
+# udevadm: not found
+# 399.3 sh: 1: udevadm: not found
+# 399.3 make: mkfs.fat: No such file or directory
+# 399.3 make: *** [Makefile:152: build-raspberrypi_zero2w/firmware.disk.img.zip] Error 127
