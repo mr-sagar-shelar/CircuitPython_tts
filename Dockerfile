@@ -141,14 +141,5 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
 # Once downloaded execute: tar -xf arm-gnu-toolchain-13.3.rel1-darwin-arm64-aarch64-none-elf.tar.xz 
 # Add global path variable: "sudo nano /etc/paths" and add the path
 
-
-# 399.0         READONLY:      963777 B      1536 KB     61.28%
-# 399.0              RAM:       31496 B      1022 MB      0.00%
-# 399.1 aarch64-none-elf-objcopy -O binary build-raspberrypi_zero2w/kernel8.elf build-raspberrypi_zero2w/kernel8.img
-# 399.1 cp build-raspberrypi_zero2w/kernel8.img build-raspberrypi_zero2w/firmware.kernel8.img
-# 399.1 0+0 records in
-# 399.1 0+0 records out
-# udevadm: not found
-# 399.3 sh: 1: udevadm: not found
-# 399.3 make: mkfs.fat: No such file or directory
-# 399.3 make: *** [Makefile:152: build-raspberrypi_zero2w/firmware.disk.img.zip] Error 127
+# Once docker image is ready then run it using
+# docker run -it tts_circuitpython
