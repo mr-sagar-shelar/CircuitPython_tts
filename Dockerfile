@@ -51,7 +51,7 @@ RUN echo "\n\n\n ************************************** Setting mpy-cross ******
     . myEnv/bin/activate &&\
     cd circuitpython &&\
     echo $(pwd) && \
-    echo $(ls) && \
+    # echo $(ls) && \
     echo "\n\n\n ************************************** make -C mpy-cross **************************************" && \
     make -C mpy-cross
 
@@ -77,7 +77,7 @@ RUN echo "\n\n ************************************** Downloading aarch64-none-e
     # wget -nv https://gist.githubusercontent.com/ramsey/11072524/raw/62dace10c306381445a0110538097d5c02227f2d/hello1.c && \
     echo "\n\n ************************************** Contents of Bin **************************************" && \
     echo $(pwd) && \
-    echo $(ls -l)
+    # echo $(ls -l)
 
 
 # # Compile sample C program
