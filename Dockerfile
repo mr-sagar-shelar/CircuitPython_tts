@@ -116,3 +116,9 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
 # docker build --progress=plain -t tts_circuitpython .
 # gcc -dumpmachine
 # "uname -m" 
+
+#on Mac download it from https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
+# from section macOS (Apple silicon) hosted cross toolchains
+# Direct URL: https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-gnu-toolchain-13.3.rel1-darwin-arm64-aarch64-none-elf.tar.xz
+# Once downloaded execute: tar -xf arm-gnu-toolchain-13.3.rel1-darwin-arm64-aarch64-none-elf.tar.xz 
+# Add global path variable: "sudo nano /etc/paths" and add the path
