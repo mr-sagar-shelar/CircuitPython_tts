@@ -8,7 +8,7 @@ ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update
-RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext mtools python3-full python3-pip python3-venv curl gcc wget xz-utils file parted udev
+RUN apt-get install -y build-essential cmake git openssh-server git-lfs gettext mtools python3-full python3-pip python3-venv curl gcc wget xz-utils file parted udev zip
 # RUN apt-get install -y wget xz-utils file
 # RUN apt-get install -y wget gcc gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu make file
 
@@ -125,7 +125,9 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
     # echo $(ls -l) && \
     make BOARD=raspberrypi_zero2w && \
     echo $(pwd) && \
-    echo $(ls -l)
+    echo $(ls)
+    cd build-raspberrypi_zero2w && \
+    echo $(ls)
 
 # FileNotFoundError: [Errno 2] No such file or directory: 'aarch64-none-elf-gcc'
 
