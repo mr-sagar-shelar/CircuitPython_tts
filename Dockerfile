@@ -53,7 +53,7 @@ RUN echo "\n\n\n ************************************** Setting mpy-cross ******
     echo $(pwd) && \
     # echo $(ls) && \
     echo "\n\n\n ************************************** make -C mpy-cross **************************************" && \
-    make -C mpy-cross
+    make -j -C mpy-cross
 
 # Download aarch64-none-elf-gcc
 RUN echo "\n\n ************************************** Downloading aarch64-none-elf-gcc **************************************" && \
@@ -104,7 +104,7 @@ RUN echo "\n\n\n ************************************** Download dosfstools ****
     cd dosfstools-4.2 && \
     ./configure && \
     echo "\n\n\n ************************************** Making DOSFSTools **************************************" && \
-    make && \
+    make -j && \
     echo "\n\n\n ************************************** Contents of DOSFSTools **************************************" && \
     echo $(pwd) && \
     echo "\n\n\n ************************************** Installing DOSFSTools **************************************" && \
@@ -125,7 +125,7 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
     # echo $(ls -l) && \
     make BOARD=raspberrypi_zero2w && \
     echo $(pwd) && \
-    echo $(ls)
+    echo $(ls) && \
     cd build-raspberrypi_zero2w && \
     echo $(ls)
 
