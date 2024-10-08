@@ -33,8 +33,10 @@ RUN echo "\n\n\n ************************************** Clone Circuit Python Rep
     python3 -mvenv myEnv &&\
     echo $(ls) &&\
     . myEnv/bin/activate &&\
-    git clone https://github.com/adafruit/circuitpython.git && \
+    git clone https://github.com/mr-sagar-shelar/circuitpython.git && \
     cd circuitpython && \ 
+    make fetch-tags && \
+    git checkout feature/myModule && \
     echo $(pwd) && \
     echo $(ls) && \
     pip3 install --upgrade -r requirements-dev.txt && \
@@ -143,3 +145,8 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
 
 # Once docker image is ready then run it using
 # docker run -it tts_circuitpython
+# Once docker image is ready then run it using
+# docker run -d -v D:\CircuitPython\CircuitPython_tts:/sharedFolder IMAGE_ID
+# docker run -d -v D:\CircuitPython\CircuitPython_tts:/sharedFolder a13937154380
+# docker exec -it CONTAINER_ID sh
+#tts_circuitpython
