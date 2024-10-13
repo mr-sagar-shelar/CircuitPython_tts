@@ -150,3 +150,13 @@ RUN echo "\n\n\n ************************************** Setting Python Env *****
 # docker run -d -v D:\CircuitPython\CircuitPython_tts:/sharedFolder a13937154380
 # docker exec -it CONTAINER_ID sh
 #tts_circuitpython
+
+# docker run -it -v D:\CircuitPython\CircuitPython_tts:/sharedFolder 4e9c88dd637d
+
+# After connecting to device over REPL, do following command
+# from tts import initialize, register_cmu_us_kal, register_voice, synth_text, text_to_wave
+# initialize()
+# register_cmu_us_kal()
+# register_voice()
+# synth_text()
+# text_to_wave()
